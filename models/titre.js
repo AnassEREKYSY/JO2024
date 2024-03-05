@@ -1,7 +1,7 @@
 
 module.exports = (sequelize, DataTypes) => {
 const Titre = sequelize.define("titre", {
-    result_id: {
+    resultat_id: {
         type: DataTypes.STRING,
         allowNull: false
     },

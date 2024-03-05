@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+const coockieParser = require("cookie-parser");
 
+app.use(coockieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));

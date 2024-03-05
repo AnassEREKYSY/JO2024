@@ -7,5 +7,16 @@ module.exports = (sequelize, DataTypes) => {
     lieu: DataTypes.STRING,
   });
 
+  Epreuve.associate = (models) => {
+    Epreuve.belongsTo(models.sport, {
+      foreignKey: "sport_id",
+      as: "sport",
+    });
+    Epreuve.hasMany(models.resultat, {
+      foreignKey: "epreuve_id",
+      as: "resultats",
+    });
+  }
+
   return Epreuve;
 };

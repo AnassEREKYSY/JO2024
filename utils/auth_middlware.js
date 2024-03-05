@@ -1,4 +1,5 @@
 const jwt  = require('jsonwebtoken');
+const db = require('../models');
 
 exports.verify_token = async (req, res, next) => {
     let token = req.cookies?.jwt;

@@ -2,17 +2,17 @@ const db = require("../../models");
 const handleQuery = require("../../utils/handle_query");
 const { Op } = require("sequelize");
 
-exports.get_sports = async (req, res) => {
-  return handleQuery(db.sport, req, res, {}, {});
+exports.get_titres = async (req, res) => {
+  return handleQuery(db.titre, req, res, {}, {});
 };
 
-exports.add_sport = async (req, res) => {
+exports.add_titre = async (req, res) => {
   try {
-    const sport = await db.sport.create(req.body);
+    const titre = await db.titre.create(req.body);
     return res.status(201).json({
       status: "success",
       data: {
-        sport,
+        titre,
       },
     });
   } catch (err) {
@@ -23,19 +23,19 @@ exports.add_sport = async (req, res) => {
   }
 };
 
-exports.get_sport = async (req, res) => {
+exports.get_titre = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const titre = await db.titre.findByPk(req.params.id);
+    if (!titre) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Titre not found",
       });
     }
     return res.status(200).json({
       status: "success",
       data: {
-        sport,
+        titre,
       },
     });
   } catch (err) {
@@ -46,20 +46,20 @@ exports.get_sport = async (req, res) => {
   }
 };
 
-exports.update_sport = async (req, res) => {
+exports.update_titre = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const titre = await db.titre.findByPk(req.params.id);
+    if (!titre) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Titre not found",
       });
     }
-    await sport.update(req.body);
+    await titre.update(req.body);
     return res.status(200).json({
       status: "success",
       data: {
-        sport,
+        titre,
       },
     });
   } catch (err) {
@@ -70,16 +70,16 @@ exports.update_sport = async (req, res) => {
   }
 };
 
-exports.delete_sport = async (req, res) => {
+exports.delete_titre = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const titre = await db.titre.findByPk(req.params.id);
+    if (!titre) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Titre not found",
       });
     }
-    await sport.destroy();
+    await titre.destroy();
     return res.status(204).json({
       status: "success",
       data: null,
@@ -92,13 +92,13 @@ exports.delete_sport = async (req, res) => {
   }
 };
 
-exports.list_sports = async (req, res) => {
+exports.list_titres = async (req, res) => {
     try {
-        const sports = await db.sport.findAll();
+        const titres = await db.titre.findAll();
         return res.status(200).json({
-            list:sports,
+            list: titres,
         });
-    }catch(err){
+    } catch (err) {
         return res.status(400).json({
             status: "fail",
             message: err,
