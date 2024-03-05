@@ -18,7 +18,7 @@ app.listen(3000, () => {
 
 
 app.get('/', (req, res) => {
-    res.render('templates/login');
+    res.render('templates/Athlete/showAllAthletes');
 });
 
 
