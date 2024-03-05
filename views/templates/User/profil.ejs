@@ -4,8 +4,18 @@
 
 <div class="min-h-screen flex items-center justify-center bg-gray-100 px-8 py-6">
 
-  <form class="flex flex-col space-y-4 w-full max-w-md px-8 py-6 bg-white rounded-lg shadow-md">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Informations de l'Athlète</h1>
+    <form class="flex flex-col space-y-4 w-full max-w-md px-8 py-6 bg-white rounded-lg shadow-md">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Profile</h1>
+  
+      <div class="flex justify-center items-center mb-4">
+        <div class="relative rounded-full h-16 w-16 bg-gray-200 flex justify-center items-center cursor-pointer border-2 border-gray-300">
+          <label for="image" class="w-full h-full flex flex-col items-center justify-center">
+            <img id="preview" src="" alt="Preview" class="rounded-full h-full w-full object-cover">
+            <span class="sr-only">Upload profile image</span>
+          </label>
+          <input type="file" id="image" name="image" accept="image/*" class="hidden absolute top-0 left-0 right-0 bottom-0 z-10" onchange="previewImage()">
+        </div>
+      </div>
   
     <div class="grid grid-cols-2 gap-4">
       <div class="flex flex-col">
@@ -18,15 +28,11 @@
       </div>
     </div>
   
-    <div class="grid grid-cols-2 gap-4">
-      <div class="flex flex-col">
+    <div class="flex flex-col">
+  
         <label for="date_naissance" class="text-sm font-medium text-gray-700">Date de naissance:</label>
         <input type="date" id="date_naissance" name="date_naissance" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
-      </div>
-      <div class="flex flex-col">
-        <label for="image" class="text-sm font-medium text-gray-700">Image:</label>
-        <input type="file" id="image" name="image" accept="image/*" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 cursor-pointer">
-      </div>
+
     </div>
   
     <div class="flex flex-col">
@@ -34,7 +40,7 @@
       <textarea id="bio" name="bio" rows="2" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500" maxlength="200" required></textarea>
     </div>
   
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-4 justify-items-center ">
       <div class="flex flex-col">
         <label for="sex" class="text-sm font-medium text-gray-700">Sexe:</label>
         <select id="sex" name="sex" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
@@ -54,7 +60,7 @@
     </div>
   
     <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white rounded-md py-2 mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white w-full">
-      Enregistrer
+      Modifier
     </button>
   
   </form>
@@ -62,6 +68,21 @@
 </div>
 
 
+<script>
+    function previewImage() {
+      const imagePreview = document.getElementById('preview');
+      const imageFile = document.getElementById('image').files[0];
+  
+      if (imageFile) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(imageFile);
+      }
+    }
+</script>
   
 
 
