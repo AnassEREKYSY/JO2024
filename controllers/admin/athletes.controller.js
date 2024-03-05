@@ -2,17 +2,17 @@ const db = require("../../models");
 const handleQuery = require("../../utils/handle_query");
 const { Op } = require("sequelize");
 
-exports.get_sports = async (req, res) => {
-  return handleQuery(db.sport, req, res, {}, {});
+exports.get_athletes = async (req, res) => {
+  return handleQuery(db.athlete, req, res, {}, {});
 };
 
-exports.add_sport = async (req, res) => {
+exports.add_athlete = async (req, res) => {
   try {
-    const sport = await db.sport.create(req.body);
+    const athlete = await db.athlete.create(req.body);
     return res.status(201).json({
       status: "success",
       data: {
-        sport,
+        athlete,
       },
     });
   } catch (err) {
@@ -21,21 +21,21 @@ exports.add_sport = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.get_sport = async (req, res) => {
+exports.get_athlete = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const athlete = await db.athlete.findByPk(req.params.id);
+    if (!athlete) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Athlete not found",
       });
     }
     return res.status(200).json({
       status: "success",
       data: {
-        sport,
+        athlete,
       },
     });
   } catch (err) {
@@ -44,22 +44,22 @@ exports.get_sport = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.update_sport = async (req, res) => {
+exports.update_athlete = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const athlete = await db.athlete.findByPk(req.params.id);
+    if (!athlete) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Athlete not found",
       });
     }
-    await sport.update(req.body);
+    await athlete.update(req.body);
     return res.status(200).json({
       status: "success",
       data: {
-        sport,
+        athlete,
       },
     });
   } catch (err) {
@@ -68,18 +68,18 @@ exports.update_sport = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.delete_sport = async (req, res) => {
+exports.delete_athlete = async (req, res) => {
   try {
-    const sport = await db.sport.findByPk(req.params.id);
-    if (!sport) {
+    const athlete = await db.athlete.findByPk(req.params.id);
+    if (!athlete) {
       return res.status(404).json({
         status: "fail",
-        message: "Sport not found",
+        message: "Athlete not found",
       });
     }
-    await sport.destroy();
+    await athlete.destroy();
     return res.status(204).json({
       status: "success",
       data: null,
@@ -90,18 +90,19 @@ exports.delete_sport = async (req, res) => {
       message: err,
     });
   }
-};
+}
 
-exports.list_sports = async (req, res) => {
-    try {
-        const sports = await db.sport.findAll();
-        return res.status(200).json({
-            list:sports,
-        });
-    }catch(err){
-        return res.status(400).json({
-            status: "fail",
-            message: err,
-        });
-    }
+exports.list_athletes = async (req, res) => {
+  try{
+    const athletes = await db.athlete.findAll();
+    return res.status(200).json({
+      status: "success",
+      list:athletes
+    });
+  } catch (err) {
+    return res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
 }

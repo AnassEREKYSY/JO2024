@@ -7,7 +7,7 @@ const handleQuery = async (model, req, res, query_params, additional_where = {})
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const startIndex = (page - 1) * limit;
-        const endIndex = page * limit;
+        
 
         
         const filters = {...req.query} || {};
