@@ -17,7 +17,7 @@ app.listen(3000, () => {
 );
 
 app.get('/', (req, res) => {
-    res.render('templates/titre/addEditTitre');
+    res.render('templates/public/public');
 });
 
 
