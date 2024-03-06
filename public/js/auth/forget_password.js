@@ -31,7 +31,28 @@ const forget_password = async (event) => {
         document.querySelector("form").appendChild(error);
       }
     } else {
-      window.location.href = "/";
+        let success = document.createElement("div");
+        success.classList.add(
+          "bg-green-100",
+          "border",
+          "border-green-400",
+          "text-green-700",
+          "px-4",
+          "py-3",
+          "rounded",
+          "relative",
+          "mb-4"
+        );
+        success.innerHTML = "Le code de réinitialisation a été envoyé à votre adresse e-mail";
+
+        if (!document.querySelector(".bg-green-100")) {
+          document.querySelector("form").appendChild(success);
+        }
+
+        setTimeout(() => {
+          window.location.href = "/reset-password?email=" + email;
+        }, 3000);
+
     }
   } catch (e) {
     console.log(e);

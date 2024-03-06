@@ -60,7 +60,7 @@ exports.get_epreuve = async (req, res) => {
 
 exports.get_titres = async (req, res) => {
   return handleQuery(db.titre, req, res, {}, {});
-}
+};
 
 exports.list_titre = async (req, res) => {
   try {
@@ -69,7 +69,7 @@ exports.list_titre = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-}
+};
 
 exports.get_titre = async (req, res) => {
   try {
@@ -78,21 +78,30 @@ exports.get_titre = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-}
+};
 
 exports.login = async (req, res) => {
-  try{
-    return res.render('templates/user/login') 
-  } catch(err) {
+  try {
+    return res.render("templates/admin/login");
+  } catch (err) {
     res.status(500).json(err);
   }
-}
+};
 
 exports.forgot_password = async (req, res) => {
-  try{
-    return res.render('templates/user/forgot-password')
-  }
-  catch(err){
+  try {
+    return res.render("templates/admin/forgot-password");
+  } catch (err) {
     res.status(500).json(err);
   }
-}
+};
+
+exports.reset_password = async (req, res) => {
+  try {
+    return res.render("templates/admin/reset-password", {
+      email: req.query.email,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
