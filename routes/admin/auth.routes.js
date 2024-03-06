@@ -10,6 +10,8 @@ router.route('/logout').post(authController.logout);
 router.route('/add-user').post(authController.add_user);
 router.route('/profile').get(verify_token ,authController.get_profile).patch(verify_token, authController.edit_me)
 router.route('/profile/update-password').patch(verify_token ,authController.update_password)
+router.route('/forgot-password').post(authController.forgot_password);
+router.route('/reset-password').patch(authController.reset_password);
 
 module.exports = router;
 

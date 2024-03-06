@@ -1,5 +1,5 @@
 const express = require('express');
-const { get_sports, get_sport, list_sports, list_pays, get_athletes, get_athlete, get_epreuves, get_epreuve, get_titres, get_titre, login } = require('../../controllers/public_views/public.controller');
+const { get_sports, get_sport, list_sports, list_pays, get_athletes, get_athlete, get_epreuves, get_epreuve, get_titres, get_titre, login, forgot_password } = require('../../controllers/public_views/public.controller');
 const router = express.Router();
 
 router.route('/sports').get(get_sports);
@@ -13,6 +13,7 @@ router.route('/epreuves/:id').get(get_epreuve);
 router.route('/titres').get(get_titres);
 router.route('/titres/:id').get(get_titre);
 router.route('/login').get(login)
+router.route('/forgot-password').get(forgot_password)
 
 
 module.exports = router;
