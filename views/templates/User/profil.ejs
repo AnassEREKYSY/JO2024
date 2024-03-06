@@ -40,10 +40,10 @@
       <textarea id="bio" name="bio" rows="2" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500" maxlength="200" required></textarea>
     </div>
   
-    <div class="grid grid-cols-2 gap-4 justify-items-center ">
+    <div class="grid grid-cols-2 gap-4">
       <div class="flex flex-col">
         <label for="sex" class="text-sm font-medium text-gray-700">Sexe:</label>
-        <select id="sex" name="sex" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
+        <select id="sex" name="sex" class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full" required>
           <option value="male">Homme</option>
           <option value="female">Femme</option>
         </select>
@@ -51,16 +51,16 @@
       <div class="flex flex-col">
         <label for="country" class="text-sm font-medium text-gray-700">Pays:</label>
         <div class="relative">
-          <select id="country" name="country" class="rounded-md border border-gray-300 p-2 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-blue-500" required>
-            <option value="france">Maroc</option>
+          <select id="country" name="country" class="rounded-md border border-gray-300 p-2 pl-2 pr-4 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full" required>
+            <option value="maroc">Maroc</option>
             <option value="france">France</option>
           </select>
         </div>
       </div>
     </div>
-  
-    <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white rounded-md py-2 mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white w-full">
-      Modifier
+
+    <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white rounded-md py-2 px-4 mx-auto mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
+        Modifier
     </button>
   
   </form>
