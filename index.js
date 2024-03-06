@@ -17,7 +17,7 @@ app.listen(3000, () => {
 );
 
 app.get('/', (req, res) => {
-    res.render('templates/public/public');
+    res.render('templates/athlete/showAllAthletes');
 });
 
 
