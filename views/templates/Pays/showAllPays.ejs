@@ -1,0 +1,54 @@
+<%- include('../../layouts/header') %>
+
+<%- include('../../layouts/navBar') %>
+
+<div class="flex flex-col items-center  px-8 py-6">
+    <!-- Search Bar and Add New Item Button -->
+    <div class="mb-4 flex items-center justify-between w-full">
+        <div class="flex items-center">
+            <input type="text" class="border border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:ring focus:border-blue-300" placeholder="Search...">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-md focus:outline-none focus:ring focus:border-blue-300 ml-2">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <button class="bg-green-500 hover:bg-green-700 text-white px-3 py-1 rounded-md focus:outline-none focus:ring focus:border-green-300">
+            Ajouter
+        </button>
+    </div>
+  
+    <!-- Table -->
+    <table class="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b text-center">Drapeau</th>
+          <th class="py-2 px-4 border-b text-center">Pays</th>
+          <th class="py-2 px-4 border-b text-center">Nombre d'Athléte</th>
+          <th class="py-2 px-4 border-b text-center">Sport/Epreuve</th>
+          <th class="py-2 px-4 border-b text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="py-2 px-4 border-b text-center">Drapeau</td>
+          <td class="py-2 px-4 border-b text-center">Pays</td>
+          <td class="py-2 px-4 border-b text-center">Nombre d'Athléte</td>
+          <td class="py-2 px-4 border-b text-center">Sport/Epreuve</td>
+          <td class="py-2 px-4 border-b text-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md focus:outline-none focus:ring focus:border-red-300 ml-2">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  
+</div>
+  
+  
+  
+
+
+<%- include('../../layouts/footer') %>  
