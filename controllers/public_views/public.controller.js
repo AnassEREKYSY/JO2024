@@ -80,3 +80,10 @@ exports.get_titre = async (req, res) => {
   }
 }
 
+exports.login = async (req, res) => {
+  try{
+    return res.render('templates/user/login') 
+  } catch(err) {
+    res.status(500).json(err);
+  }
+}
