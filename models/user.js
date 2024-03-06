@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
     password: DataTypes.STRING,
+    pin_code: DataTypes.STRING,
     photo: DataTypes.STRING,
     role: DataTypes.STRING,
   });

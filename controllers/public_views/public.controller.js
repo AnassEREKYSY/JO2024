@@ -87,3 +87,12 @@ exports.login = async (req, res) => {
     res.status(500).json(err);
   }
 }
+
+exports.forgot_password = async (req, res) => {
+  try{
+    return res.render('templates/user/forgot-password')
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+}
