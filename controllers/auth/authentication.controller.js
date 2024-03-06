@@ -80,7 +80,7 @@ exports.forgot_password = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         status: "fail",
-        message: "User not found",
+        message: "L'utilisateur n'existe pas",
       });
     }
 
