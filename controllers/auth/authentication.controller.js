@@ -89,16 +89,16 @@ exports.forgot_password = async (req, res) => {
     await user.save({ validate: false });
 
     var transport = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
+      host: "smtp-relay.brevo.com",
+      port: 587,
       auth: {
-        user: "b68a5858de5736",
-        pass: "6eed8f2acba975",
+        user: "omarouafi12@gmail.com",
+        pass: "fGqIa4WD6k1RxLbj",
       },
     });
 
     const mailOptions = {
-      from: "no-reply@JO2024.com",
+      from: "omarouafi12@gmail.com",
       to: user.email,
       subject: "Mot de passe oublié",
       text: `Votre code pin est ${pin_code}`,
@@ -129,14 +129,14 @@ exports.reset_password = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         status: "fail",
-        message: "User not found",
+        message: "L'utilisateur n'existe pas",
       });
     }
 
     if (user.pin_code !== req.body.pin_code) {
       return res.status(400).json({
         status: "fail",
-        message: "Invalid pin code",
+        message: "Code pin invalide",
       });
     }
 
@@ -146,12 +146,12 @@ exports.reset_password = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      message: "Password reset successfully",
+      message: "Mot de passe réinitialisé avec succès",
     });
   } catch (err) {
     return res.status(400).json({
       status: "fail",
-      message: err,
+      message: err.message, 
     });
   }
 };

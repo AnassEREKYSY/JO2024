@@ -49,7 +49,9 @@ const forget_password = async (event) => {
           document.querySelector("form").appendChild(success);
         }
 
-
+        setTimeout(() => {
+          window.location.href = "/reset-password?email=" + email;
+        }, 3000);
 
     }
   } catch (e) {
