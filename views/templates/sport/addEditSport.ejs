@@ -1,23 +1,29 @@
 <%- include('../../layouts/header') %>
-
 <%- include('../../layouts/navBar') %>
 
 <div class="flex items-center justify-center bg-gray-100 h-screen px-8 py-6 w-full">
 
-  <form class="flex flex-col space-y-4 w-full max-w-2xl px-8 py-6 bg-white rounded-lg shadow-md md:w-full">
+  <form class="flex flex-col space-y-4 w-full max-w-2xl px-8 py-6 bg-white rounded-lg shadow-md md:w-full" onsubmit="addSport(event)" enctype="multipart/form-data">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Sport</h1>
   
-    <div class="flex flex-col">
-      <label for="nom" class="text-sm font-medium text-gray-700">Sport:</label>
-      <input type="text" id="nom" name="nom" class="rounded-md border border-gray-300 p-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500" maxlength="20" required>
-    </div>
+      <div>
+        <label for="sport" class="block text-sm font-medium leading-6 text-gray-900">Sport</label>
+        <div class="mt-2">
+          <input id="sport" name="name" type="text" autocomplete="sport" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-neutral-700 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div>
+        <label for="Image" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+        <div class="mt-2">
+          <input id="image" name="name" type="file" autocomplete="image" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-neutral-700 sm:text-sm sm:leading-6">
+        </div>
+      </div>
 
-    <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white rounded-md py-2 px-4 mx-auto mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-        Enregistrer
-    </button>
-  
+    <button type="submit" class="flex w-full justify-center rounded-md bg-neutral-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800">Sauvegarder</button>
   </form>
 
 </div>
+
+<script src="/js/sports/add-sport.js"></script>
 
 <%- include('../../layouts/footer') %>

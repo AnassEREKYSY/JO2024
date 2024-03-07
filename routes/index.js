@@ -16,5 +16,11 @@ router.use('/api/admin/pays', verify_token, require('./admin/pays.routes'));
 // Public routes
 router.use('/', require('./public/public.routes'));
 
+//admin views routes
+
+router.use('/admin', verify_token,require('./admin_views/admin_routes_views'));
+
+
+
 
 module.exports = router;

@@ -8,6 +8,20 @@ exports.get_titres = async (req, res) => {
 
 exports.add_titre = async (req, res) => {
   try {
+
+    const titre_exist = await db.titre.findOne({
+      where: {
+        resultat_id: req.body.resultat_id,
+      },
+    });
+
+    if (titre_exist) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Il existe déjà un titre pour ce résultat",
+      });
+    }
+
     const titre = await db.titre.create(req.body);
     return res.status(201).json({
       status: "success",
@@ -15,6 +29,30 @@ exports.add_titre = async (req, res) => {
         titre,
       },
     });
+  } catch (err) {
+    return res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.add_titre_view = async (req, res) => {
+  try {
+    const resultats = await db.resultat.findAll({
+      include: [
+        { model: db.athlete, as: "athlete" },
+        { model: db.epreuve, as: "epreuve",
+          include: [
+            { model: db.sport, as: "sport" },
+          ],
+       },
+      ],
+    })
+    res.render("templates/titre/addEditTitre", {
+      resultats: resultats,
+    });
+
   } catch (err) {
     return res.status(400).json({
       status: "fail",

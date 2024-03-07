@@ -1,0 +1,100 @@
+<%- include('../../layouts/header') %>
+
+<div class="min-h-full">
+  <%- include('../../layouts/navbar-public') %>
+
+  <header class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 mt-4">Pays</h1>
+    </div>
+  </header>
+  <main class="px-16 py-8">
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Pays
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Athletes
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Titres
+          </th>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-white">
+        <% pays.forEach(pays_el => { %>
+        <tr>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="flex items-center">
+              <img
+                src="<%= pays_el.flag %>"
+                alt="<%= pays_el.label %>"
+                class="h-10 w-10 mr-3"
+              />
+              <div class="text-sm leading-5 text-gray-900 font-semibold">
+                <%= pays_el.label %>
+              </div>
+            </div>
+          </td>
+
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="text-sm leading-5 text-gray-900">
+              <%= pays_el.athletes.length %>
+            </div>
+          </td>
+
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="text-sm leading-5 text-gray-900 flex ">
+              <!-- gold medals -->
+              <div class="mr-4" >
+               
+                <p
+                  class="inline text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                >
+                  <%= pays_el.athletes.reduce((acc, athlete) => acc +
+                  (athlete.resultats.reduce((acc, resultat) => acc + (resultat.titre?.type.toLowerCase() === "or" ? 1 : 0), 0)), 0) %>
+                </p>
+                <i class="fa-solid fa-medal text-yellow-500"></i>
+              </div>
+              <!-- silver medals -->
+              <div class="mr-4">
+               
+                <p
+                  class="inline text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                >
+                <%= pays_el.athletes.reduce((acc, athlete) => acc +
+                (athlete.resultats.reduce((acc, resultat) => acc + (resultat.titre?.type.toLowerCase() === "argent" ? 1 : 0), 0)), 0) %>
+                </p>
+                <i class="fa-solid fa-medal text-gray-500"></i>
+              </div>
+              <!-- bronze medals -->
+              <div class="mr-4">
+             
+                <p
+                  class="inline text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                >
+                <%= pays_el.athletes.reduce((acc, athlete) => acc +
+                (athlete.resultats.reduce((acc, resultat) => acc + (resultat.titre?.type.toLowerCase() === "bronze" ? 1 : 0), 0)), 0) %>
+                </p>
+                <i class="fa-solid fa-medal text-orange-900"></i>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<%- include('../../layouts/footer') %>

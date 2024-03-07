@@ -22,6 +22,27 @@ exports.add_resultat = async (req, res) => {
     });
   }
 };
+exports.add_resultat_view = async (req, res) => {
+  try {
+    const athletes = await db.athlete.findAll();
+    const epreuves = await db.epreuve.findAll({
+      include: [
+        { model: db.sport, as: "sport" },
+      ],
+    });
+
+    res.render("templates/Resultats/addEditResultats", {
+      athletes: athletes,
+      epreuves: epreuves,
+    });
+
+  } catch (err) {
+    return res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
 
 exports.get_resultat = async (req, res) => {
   try {

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     Epreuve.belongsTo(models.sport, {
       foreignKey: "sport_id",
       as: "sport",
+      constraints: false,
     });
     Epreuve.hasMany(models.resultat, {
       foreignKey: "epreuve_id",

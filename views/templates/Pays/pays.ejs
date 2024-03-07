@@ -1,0 +1,83 @@
+<%- include('../../layouts/header') %>
+<%- include('../../layouts/navBar') %>
+
+<main class="p-8 pt-24">
+
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold">Pays</h2>
+    <a href="/admin/pays/add" class="flex justify-center rounded-md bg-neutral-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800">Ajouter un pays</a>
+  </div>
+
+    <table class="w-full mt-4">
+      <thead>
+        <tr>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            #
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Pays
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Nombre d'athletes
+          </th>
+       
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-white">
+        <% pays.forEach(pays_el => { %>
+        <tr>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div>
+                <div class="text-sm leading-5 text-gray-900">
+                    <%= pays_el.id %>
+                </div>
+                </div>
+            </td>
+
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="flex items-center">
+                <img
+                  src="<%= pays_el.flag %>"
+                  alt="<%= pays_el.label %>"
+                  class="h-10 w-10 mr-3"
+                />
+                <div class="text-sm leading-5 text-gray-900 font-semibold">
+                  <%= pays_el.label %>
+                </div>
+              </div>
+            </td>
+
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+              <%= pays_el.athletes.length %>
+              </div>  
+            </td>
+         
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="flex items-center">
+              <form action="/api/admin/pays/<%= pays_el.id %>/delete" method="GET">
+                <button type="submit" class="text-red-600 hover:text-red-900 ml-4">Supprimer</button>
+              </form>
+            </div>
+          </td>
+           
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </main>
+
+<%- include('../../layouts/footer') %>

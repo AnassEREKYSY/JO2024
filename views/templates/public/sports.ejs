@@ -1,0 +1,29 @@
+<%- include('../../layouts/header') %>
+
+<div class="min-h-full">
+    <%- include('../../layouts/navbar-public') %>
+  
+    <header class="bg-white">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-3xl font-bold text-gray-900 mt-4">Sports</h1>
+      </div>
+    </header>
+    <main class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 px-16 py-8">
+
+      <% sports.forEach(sport => { %>
+        <a class="flex items-center justify-center" href="/sports/<%= sport.id %>">
+          <div class="flex flex-col w-full">
+            <div class="overflow-hidden rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-500">
+              <img src="<%= sport.image %>" alt="<%= sport.name %>" class="h-64 w-full object-cover rounded-lg hover:scale-105 transition-transform duration-500">
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900 mt-4"><%= sport.name %></h2>
+          </div>
+        </a>
+      <% }) %>
+
+      
+    </main>
+  </div>
+
+  <%- include('../../layouts/footer') %>
+  

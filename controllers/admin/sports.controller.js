@@ -3,12 +3,36 @@ const handleQuery = require("../../utils/handle_query");
 const { Op } = require("sequelize");
 
 exports.get_sports = async (req, res) => {
-  return handleQuery(db.sport, req, res, {}, {});
+  try{
+    const sports = await db.sport.findAll();
+    return res.status(200).json({
+      status: "success",
+      data: {
+        sports,
+      },
+    });
+  }catch(err){
+
+  }
+  
 };
+exports.get_sports_views = async (req, res) => {
+  const sports = await db.sport.findAll();
+  res.render("templates/sport/sports", {
+    sports: sports,
+    active: "sports"
+  });
+};
+
+
+exports.add_sport_view = async (req, res) => {
+  res.render("templates/sport/addEditSport");
+}
 
 exports.add_sport = async (req, res) => {
   try {
-    const sport = await db.sport.create(req.body);
+    const filename = '/uploads/' + req.file.filename
+    const sport = await db.sport.create({name:req.body.name, image:filename});
     return res.status(201).json({
       status: "success",
       data: {
@@ -18,7 +42,7 @@ exports.add_sport = async (req, res) => {
   } catch (err) {
     return res.status(400).json({
       status: "fail",
-      message: err,
+      message: err.message,
     });
   }
 };
@@ -79,11 +103,13 @@ exports.delete_sport = async (req, res) => {
         message: "Sport not found",
       });
     }
+
+    await db.epreuve.destroy({sport_id: req.params.id});
+    await db.athlete.destroy({sport_id: req.params.id});
+    
+
     await sport.destroy();
-    return res.status(204).json({
-      status: "success",
-      data: null,
-    });
+    res.redirect('/admin/sports');
   } catch (err) {
     return res.status(400).json({
       status: "fail",

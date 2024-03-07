@@ -19,6 +19,23 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Resultat.associate = (models) => {
+    Resultat.belongsTo(models.athlete, {
+      foreignKey: "athlete_id",
+      as: "athlete",
+      constraints: false,
+    });
+    Resultat.belongsTo(models.epreuve, {
+      foreignKey: "epreuve_id",
+      as: "epreuve",
+      constraints: false,
+    });
+    Resultat.hasOne(models.titre, {
+      foreignKey: "resultat_id",
+      as: "titre",
+      constraints: false,
+    });
+  }
 
   return Resultat;
 };
