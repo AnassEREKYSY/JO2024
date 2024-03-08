@@ -3,21 +3,23 @@
 <%- include('../../layouts/navBar') %>
 
 <div class="flex items-center justify-center bg-gray-100 h-screen px-8 py-6 w-full">
-
-  <form class="flex flex-col space-y-4 w-full max-w-2xl px-8 py-6 bg-white rounded-lg shadow-md md:w-full">
-      <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Pays</h1>
+  <form class="flex flex-col space-y-4 w-full max-w-2xl px-8 py-6 bg-white rounded-lg shadow-md md:w-full" onsubmit="addPays(event);">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Pays</h1>
   
     <div class="flex flex-col">
-      <label for="nom" class="text-sm font-medium text-gray-700">Pays:</label>
-      <input type="text" id="nom" name="nom" class="rounded-md border border-gray-300 p-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500" maxlength="20" required>
+      <label for="label" class="text-sm font-medium text-gray-700">Pays:</label>
+      <input type="text" id="label" name="label" class="rounded-md border border-gray-300 p-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 mt-2" maxlength="20" required>
     </div>
+    <div class="flex flex-col">
+      <label for="flag" class="text-sm font-medium text-gray-700">Drapeau (Lien):</label>
+      <input type="text" id="flag" name="flag" class="rounded-md border border-gray-300 p-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 mt-2" required>
+    </div>
+    
+    <button type="submit" class="flex w-full justify-center rounded-md bg-neutral-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800">Sauvegarder</button>
 
-    <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white rounded-md py-2 px-4 mx-auto mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-        Enregistrer
-    </button>
-  
   </form>
-
 </div>
+
+<script src="/js/pays/add-pays.js"></script>
 
 <%- include('../../layouts/footer') %>

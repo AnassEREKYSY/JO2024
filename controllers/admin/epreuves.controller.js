@@ -11,6 +11,23 @@ exports.get_epreuves = async (req, res) => {
     ],
   }, {});
 };
+exports.get_epreuves_view = async (req, res) => {
+  try{
+    const epreuves = await db.epreuve.findAll({ include: [
+      { model: db.sport, as: "sport" },
+      
+    ] });
+    res.render("templates/epreuve/epreuves", {
+      epreuves: epreuves,
+      active: "epreuves"
+    });
+  }catch(error){
+    return res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+};
 
 exports.add_epreuve = async (req, res) => {
   try {
@@ -21,6 +38,24 @@ exports.add_epreuve = async (req, res) => {
         epreuve,
       },
     });
+  } catch (err) {
+    return res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+exports.add_epreuve_view = async (req, res) => {
+  try {
+    
+    const sports = await db.sport.findAll();
+    const athletes = await db.athlete.findAll();
+
+    res.render("templates/epreuve/addEditEpreuve", {
+      sports: sports,
+      athletes: athletes
+    });
+
   } catch (err) {
     return res.status(400).json({
       status: "fail",
@@ -86,10 +121,7 @@ exports.delete_epreuve = async (req, res) => {
         });
         }
         await epreuve.destroy();
-        return res.status(204).json({
-        status: "success",
-        data: null,
-        });
+        return res.redirect("/admin/epreuves");
     } catch (err) {
         return res.status(400).json({
         status: "fail",

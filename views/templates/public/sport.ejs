@@ -1,0 +1,117 @@
+<%- include('../../layouts/header') %>
+
+<div class="min-h-full">
+  <%- include('../../layouts/navbar-public') %>
+
+  <main class="flex px-16 py-8 mt-12">
+    <div class="flex flex-col w-1/3 mr-12">
+      <div
+        class="overflow-hidden rounded-lg bg-white transition-shadow duration-500"
+      >
+        <img
+          src="<%= sport.image %>"
+          alt="<%= sport.name %>"
+          class="h-64 w-full object-cover rounded-lg"
+        />
+      </div>
+      <h2 class="text-2xl font-bold text-gray-900 mt-4"><%= sport.name %></h2>
+    </div>
+
+    <div class="flex flex-col w-2/3">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mt-4">Les athlètes</h2>
+        <div class="mt-4 border-t border-gray-100">
+          <% if (sport.athletes.length === 0) { %>
+          <p class="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            Aucun athlète pour ce sport
+          </p>
+          <% } %>
+          <dl class="divide-y divide-gray-100">
+            <% sport.athletes.forEach(athlete => { %>
+            <div class="px-4 py-6">
+              <div class="flex items-start">
+                <dt class="text-sm font-medium leading-6 text-gray-900 mr-4">
+                  <img
+                    src="<%= athlete.photo %>"
+                    alt="<%= athlete.nom %>"
+                    class="h-16 w-16 object-cover rounded-lg"
+                  />
+                </dt>
+                <dd
+                  class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex justify-between w-full"
+                >
+                  <div>
+                    <p class="font-semibold">
+                      <%= athlete.nom %> <%= athlete.prenom %>
+                    </p>
+                    <p
+                      class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                      <%= athlete?.pays?.label ?? "USA" %>
+                    </p>
+                  </div>
+                  <div>
+                    <i class="fa-solid fa-medal"></i>
+                    <span
+                      class="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+                    >
+                      <%= athlete.resultats.length %>
+                    </span>
+                  </div>
+                </dd>
+              </div>
+            </div>
+            <% }) %>
+          </dl>
+        </div>
+      </div>
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold text-gray-900 mt-4">Les Prochains événements</h2>
+        <div class="mt-4 border-t border-gray-100">
+          <% if (sport.epreuves.length === 0) { %>
+          <p class="text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+            Aucun athlète pour ce sport
+          </p>
+          <% } %>
+          <dl class="divide-y divide-gray-100">
+            <% sport.epreuves.forEach(epreuve => { %>
+            <div class="px-4 py-6">
+              <div class="flex items-start">
+                <dt class="text-sm font-medium leading-6 text-gray-900 mr-4 w-full">
+                  <div>
+                    <p class="font-semibold text-lg"><%= epreuve.label %></p>
+                  </div>
+                  <div class="flex justify-between">
+
+                  
+                  <div class="flex items-center mt-2">
+                    <i class="fa-solid fa-location-dot mr-2 text-gray-500"></i>
+                    <div class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      <%= epreuve.lieu %>
+                    </div>
+                  </div>
+                
+
+                </div>
+                </dt>
+                <dd
+                  class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex justify-between w-full"
+                >
+                <p class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                  <%= new Date(epreuve.date).toLocaleDateString('fr-FR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }) %>
+                </dd>
+              </div>
+            </div>
+            <% }) %>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<%- include('../../layouts/footer') %>

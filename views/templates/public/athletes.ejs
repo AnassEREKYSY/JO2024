@@ -1,0 +1,53 @@
+<%- include('../../layouts/header') %>
+
+<div class="min-h-full">
+  <%- include('../../layouts/navbar-public') %>
+
+  <header class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl font-bold text-gray-900 mt-4">Athletes</h1>
+    </div>
+  </header>
+  <main
+    class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 px-16 py-8"
+  >
+    <% athletes.forEach(athlete => { %>
+    <a href="/athletes/<%= athlete.id %>"
+      class="flex flex-col w-full shadow p-2 bg-white rounded-lg hover:shadow-md transition-shadow duration-500"
+    >
+      <div class="overflow-hidden rounded-lg bg-white duration-500">
+        <img
+          src="<%= athlete.photo %>"
+          alt="<%= athlete.nom %>"
+          class="h-64 w-full object-cover rounded-lg hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+      <div class="flex flex-col p-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-gray-900"><%= athlete.nom %> <%= athlete.prenom %></h2>
+          <% if (athlete.sexe === 'M') { %>
+          <i class="fa-solid fa-mars"></i>
+          <% } else { %>
+          <i class="fa-solid fa-venus"></i>
+          <% } %>
+        </div>
+        <div class="mt-6 border-t border-gray-100">
+          <dl class="divide-y divide-gray-100">
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Pays
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= athlete.pays?.label ?? "USA" %></dd>
+            </div>
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="text-sm font-medium leading-6 text-gray-900">Sport
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= athlete.sport?.name ?? "Tennis" %></dd>
+            </div>
+         
+          </dl>
+        </div>  
+      </div>
+    </a>
+    <% }) %>
+  </main>
+</div>
+
+<%- include('../../layouts/footer') %>

@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
 const Titre = sequelize.define("titre", {
     resultat_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     type: {
@@ -10,6 +10,10 @@ const Titre = sequelize.define("titre", {
         allowNull: false
     }
 });
+
+Titre.associate = (models) => {
+    
+}
 
 
   return Titre;

@@ -6,6 +6,28 @@ exports.get_pays = async (req, res) => {
   return handleQuery(db.pays, req, res, {}, {});
 };
 
+exports.get_pays_view = async (req, res) => {
+  try{
+    const pays = await db.pays.findAll({
+      include: [
+        { model: db.athlete, as: "athletes" },
+      ],
+    });
+    
+
+    res.render("templates/Pays/pays", {
+      pays: pays,
+      active: "pays"
+    });
+  }catch(error){
+    return res.status(400).json({
+      status: "fail",
+      message: error,
+    });
+  }
+
+};
+
 exports.add_pays = async (req, res) => {
   try {
     const pays = await db.pays.create(req.body);
@@ -21,6 +43,10 @@ exports.add_pays = async (req, res) => {
       message: err,
     });
   }
+}
+
+exports.add_pays_view = async (req, res) => {
+  return res.render("templates/pays/addEditPays")
 }
 
 exports.get_one_pays = async (req, res) => {
@@ -80,10 +106,7 @@ exports.delete_pays = async (req, res) => {
       });
     }
     await pays.destroy();
-    return res.status(204).json({
-      status: "success",
-      data: null,
-    });
+    return res.redirect("/admin/pays");
   } catch (err) {
     return res.status(400).json({
       status: "fail",

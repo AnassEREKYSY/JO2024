@@ -1,0 +1,94 @@
+<%- include('../../layouts/header') %>
+<%- include('../../layouts/navBar') %>
+
+<main class="p-8 pt-24">
+
+  <div class="flex items-center justify-between">
+    <h2 class="text-2xl font-bold">Athletes</h2>
+    <a href="/admin/athletes/add" class="flex justify-center rounded-md bg-neutral-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-800">Ajouter un athlete</a>
+  </div>
+
+    <table class="w-full mt-4">
+      <thead>
+        <tr>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            #
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Photo
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Nom
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Pays
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            Age
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-white"
+          >
+            
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-white">
+        <% athletes.forEach(athlete => { %>
+        <tr>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div>
+                <div class="text-sm leading-5 text-gray-900">
+                    <%= athlete.id %>
+                </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+              <img src="<%= athlete.photo %>" alt="<%= athlete.nom %>" class="h-16 w-16 object-cover rounded-lg">
+              </div>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+              <%= athlete.prenom %> <%= athlete.nom %>
+              </div>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+              <%= athlete?.pays?.label ?? "USA" %>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+              <%= new Date().getFullYear() - new Date(athlete.date_naissance).getFullYear() %>
+              </div>
+          </td>
+
+          <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+            <div class="flex items-center">
+              <form action="/api/admin/athletes/<%= athlete.id %>/delete" method="GET">
+                <button type="submit" class="text-red-600 hover:text-red-900 ml-4">Supprimer</button>
+              </form>
+              <a href="/admin/titres/add" class="flex justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-neutral shadow-sm  ml-4">Ajouter un titre</a>
+            </div>
+          </td>
+           
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </main>
+
+<%- include('../../layouts/footer') %>
