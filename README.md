@@ -1,4 +1,6 @@
 # Nom du Projet JO2024
+- Blog web pour les JO Paris 2024 qui affiche les compétitions, les athlétes et les pays participantes.
+- il nous donne l'ensemble des evenements qui se déroule avec le temps et le lieu  en nodejs et ejs 
 
 ## Équipe
 
